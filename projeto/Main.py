@@ -21,7 +21,7 @@ pyautogui.write('admin123')
 pyautogui.press('enter')
 time.sleep(8)
 
-#clica em uma parte do 
+# clica em uma parte do programa para carregar os termometros
 imagem_carregar = caminho_imagem('carregar.png')
 imagem_localizada = pyautogui.locateCenterOnScreen(imagem_carregar)
 x, y = imagem_localizada
