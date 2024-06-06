@@ -33,6 +33,10 @@ def inserir_data():
     pyautogui.write(data_fim)
     time.sleep(1)
 
+def gerar_relatorio(nome_sala, sensores):
+    localizar_clicar(caminho_imagem('arquivo.png'))
+
+
 # Abrir o programa
 caminho_app = r'C:\Program Files (x86)\Full Gauge\SitradRemote\SitradRemote.exe'
 subprocess.Popen(caminho_app)
