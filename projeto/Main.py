@@ -74,3 +74,27 @@ time.sleep(10)
 # Selecionar e copiar o texto gerado
 pyautogui.hotkey('ctrl', 'a')
 pyautogui.hotkey('ctrl', 'c')
+
+# Caminho para o arquivo da planilha existente
+caminho_planilha = r'\\Srv-araovos\d\Meus documentos\INFO\INFO\Controles\sitrad controladores.xlsx'
+
+# Abrir Excel com a planilha específica
+subprocess.Popen([r'C:\Program Files\Microsoft Office\Office16\EXCEL.EXE', caminho_planilha])
+time.sleep(10)
+
+# Navegar para a aba "ANTICAMARA (13)"
+pyautogui.hotkey('ctrl', 'g')  # Atalho para 'Ir Para'
+time.sleep(1)
+pyautogui.write('anticamara')
+pyautogui.press('enter')
+time.sleep(2)
+pyautogui.hotkey('Ctrl', 'down')
+time.sleep(0.5)
+pyautogui.press('down')
+
+# Colar os dados copiados e exclui o indice
+pyautogui.hotkey('ctrl', 'v')
+pyautogui.press('up')
+pyautogui.press('down')
+pyautogui.hotkey('Shift', 'space')
+pyautogui.hotkey('Ctrl', '-')
