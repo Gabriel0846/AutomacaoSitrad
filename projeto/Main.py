@@ -144,6 +144,7 @@ except ImageNotFoundException:
 if erro_localizado:
     clicar_imagem('ok.png')
     print('Erro relatório Camara fria')
+    time.sleep(1)
     clicar_imagem('fechar.png')
     time.sleep(0.5)
 else:
