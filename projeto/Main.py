@@ -209,17 +209,23 @@ else:
     pyautogui.hotkey('Shift', 'space')
     pyautogui.hotkey('Ctrl', '-')
 
-    # Voltar para a janela do Sitrad
-    janela_sitrad = gw.getWindowsWithTitle("Sitrad Remote")[0]
+    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+    janela_sitrad = gw.getWindowsWithTitle("Texto2 - Refrigeração Past 1")[0]
     janela_sitrad.activate()
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
 
 # --------------------------------------------------------------------------------
 
-# Puxar relatório do Pasteurizador
-clicar_imagem('pasteurizador_1.png', duplo_clique=True)
+# Puxar relatório do Tunel de congelamento
+clicar_imagem('tunel_de_congelamento.png', duplo_clique=True)
 time.sleep(2)
 clicar_imagem('temperatura_ambiente.png')
-clicar_imagem('dispositivo.png')
+clicar_imagem('temperatura_evaporador.png')
+clicar_imagem('temperatura_sensor_3.png')
+clicar_imagem('dispositivos.png')
 clicar_imagem('adicionar.png')
 clicar_imagem('gerar.png')
 time.sleep(10)
@@ -233,14 +239,14 @@ except ImageNotFoundException:
 
 if erro_localizado:
     pyautogui.hotkey('alt', 'f4')
-    print('Erro relatório Pasteurizador 1')
+    print('Erro relatório tunel de congelamento')
     time.sleep(1)
     pyautogui.hotkey('alt', 'f4')
     time.sleep(0.5)
 else:
     clicar_imagem('ferramentas.png')
     clicar_imagem('relatoriotexto.png')
-    clicar_imagem('pasteurizador_1texto.png')
+    clicar_imagem('tunel_congelamentotexto.png')
     time.sleep(10)
 
     # Selecionar e copiar o texto gerado
@@ -254,7 +260,7 @@ else:
     # Navegar para a aba "PASTEURIZADOR 1"
     pyautogui.hotkey('ctrl', 'g')  # Atalho para 'Ir Para'
     time.sleep(1)
-    pyautogui.write('pasteurizador1')
+    pyautogui.write('tunelcongelamento')
     pyautogui.press('enter')
     time.sleep(2)
     pyautogui.hotkey('Ctrl', 'down')
