@@ -79,8 +79,11 @@ except ImageNotFoundException:
     erro_localizado = []
 
 if erro_localizado:
-    clicar_imagem('ok.png')
+    pyautogui.hotkey('alt', 'f4')
     print('Erro relatório Anticamara')
+    time.sleep(1)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(0.5)
 else:
     clicar_imagem('ferramentas.png')
     clicar_imagem('relatoriotexto.png')
@@ -118,9 +121,10 @@ else:
     # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
     janela_sitrad = gw.getWindowsWithTitle("Texto1 - Anti Camara")[0]
     janela_sitrad.activate()
-    clicar_imagem('fechar.png')
-    time.sleep(0.5)
-    clicar_imagem('fechar.png')
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
 
 # --------------------------------------------------------------------------------
 
@@ -142,10 +146,10 @@ except ImageNotFoundException:
     erro_localizado = []
 
 if erro_localizado:
-    clicar_imagem('ok.png')
+    pyautogui.hotkey('alt', 'f4')
     print('Erro relatório Camara fria')
     time.sleep(1)
-    clicar_imagem('fechar.png')
+    pyautogui.hotkey('alt', 'f4')
     time.sleep(0.5)
 else:
     print('Camara fria voltou, por favor ajuste o código')
@@ -169,8 +173,11 @@ except ImageNotFoundException:
     erro_localizado = []
 
 if erro_localizado:
-    clicar_imagem('ok.png')
+    pyautogui.hotkey('alt', 'f4')
     print('Erro relatório Pasteurizador 1')
+    time.sleep(1)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(0.5)
 else:
     clicar_imagem('ferramentas.png')
     clicar_imagem('relatoriotexto.png')
@@ -207,3 +214,60 @@ else:
     janela_sitrad.activate()
 
 # --------------------------------------------------------------------------------
+
+# Puxar relatório do Pasteurizador
+clicar_imagem('pasteurizador_1.png', duplo_clique=True)
+time.sleep(2)
+clicar_imagem('temperatura_ambiente.png')
+clicar_imagem('dispositivo.png')
+clicar_imagem('adicionar.png')
+clicar_imagem('gerar.png')
+time.sleep(10)
+
+# Verifica se a mensagem de erro apareceu na tela
+imagem_erro = caminho_imagem('erro.png')
+try:
+    erro_localizado = list(pyautogui.locateAllOnScreen(imagem_erro))
+except ImageNotFoundException:
+    erro_localizado = []
+
+if erro_localizado:
+    pyautogui.hotkey('alt', 'f4')
+    print('Erro relatório Pasteurizador 1')
+    time.sleep(1)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(0.5)
+else:
+    clicar_imagem('ferramentas.png')
+    clicar_imagem('relatoriotexto.png')
+    clicar_imagem('pasteurizador_1texto.png')
+    time.sleep(10)
+
+    # Selecionar e copiar o texto gerado
+    pyautogui.hotkey('ctrl', 'a')
+    pyautogui.hotkey('ctrl', 'c')
+
+    # Voltar para a janela do Excel
+    janela_excel = gw.getWindowsWithTitle("sitrad controladores.xlsx")[0]
+    janela_excel.activate()
+
+    # Navegar para a aba "PASTEURIZADOR 1"
+    pyautogui.hotkey('ctrl', 'g')  # Atalho para 'Ir Para'
+    time.sleep(1)
+    pyautogui.write('pasteurizador1')
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.hotkey('Ctrl', 'down')
+    time.sleep(0.5)
+    pyautogui.press('down')
+
+    # Colar os dados copiados e excluir o índice
+    pyautogui.hotkey('ctrl', 'v')
+    pyautogui.press('up')
+    pyautogui.press('down')
+    pyautogui.hotkey('Shift', 'space')
+    pyautogui.hotkey('Ctrl', '-')
+
+    # Voltar para a janela do Sitrad
+    janela_sitrad = gw.getWindowsWithTitle("Sitrad Remote")[0]
+    janela_sitrad.activate()
