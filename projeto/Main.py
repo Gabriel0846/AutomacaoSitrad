@@ -113,14 +113,19 @@ else:
 
     # Colar os dados copiados e excluir o índice
     pyautogui.hotkey('ctrl', 'v')
+    time.sleep(2)
     pyautogui.press('up')
+    time.sleep(0.5)
     pyautogui.press('down')
+    time.sleep(0.5)
     pyautogui.hotkey('Shift', 'space')
+    time.sleep(0.5)
     pyautogui.hotkey('Ctrl', '-')
+    time.sleep(2)
 
     # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
-    janela_sitrad = gw.getWindowsWithTitle("Texto1 - Anti Camara")[0]
-    janela_sitrad.activate()
+    pyautogui.hotkey('alt', 'tab')
+    time.sleep(2)
     pyautogui.hotkey('alt', 'f4')
     time.sleep(2)
     pyautogui.hotkey('alt', 'f4')
@@ -204,14 +209,19 @@ else:
 
     # Colar os dados copiados e excluir o índice
     pyautogui.hotkey('ctrl', 'v')
+    time.sleep(2)
     pyautogui.press('up')
+    time.sleep(0.5)
     pyautogui.press('down')
+    time.sleep(0.5)
     pyautogui.hotkey('Shift', 'space')
+    time.sleep(0.5)
     pyautogui.hotkey('Ctrl', '-')
+    time.sleep(2)
 
     # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
-    janela_sitrad = gw.getWindowsWithTitle("Texto2 - Refrigeração Past 1")[0]
-    janela_sitrad.activate()
+    pyautogui.hotkey('alt', 'tab')
+    time.sleep(2)
     pyautogui.hotkey('alt', 'f4')
     time.sleep(2)
     pyautogui.hotkey('alt', 'f4')
@@ -269,11 +279,168 @@ else:
 
     # Colar os dados copiados e excluir o índice
     pyautogui.hotkey('ctrl', 'v')
+    time.sleep(2)
     pyautogui.press('up')
+    time.sleep(0.5)
     pyautogui.press('down')
+    time.sleep(0.5)
     pyautogui.hotkey('Shift', 'space')
+    time.sleep(0.5)
     pyautogui.hotkey('Ctrl', '-')
+    time.sleep(2)
 
-    # Voltar para a janela do Sitrad
-    janela_sitrad = gw.getWindowsWithTitle("Sitrad Remote")[0]
-    janela_sitrad.activate()
+    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+    pyautogui.hotkey('alt', 'tab')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+
+# -------------------------------------------------------------------------------
+
+# Puxar relatório do Tunel de congelado
+clicar_imagem('tunel_congelado1.png')
+time.sleep(1)
+clicar_imagem('tunel_congelado2.png', duplo_clique=True)
+time.sleep(2)
+clicar_imagem('temperatura_sensor_1.png')
+clicar_imagem('temperatura_sensor_2.png')
+clicar_imagem('temperatura_sensor_3.png')
+clicar_imagem('temperatura_diferencial.png')
+clicar_imagem('temperatura_media.png')
+clicar_imagem('adicionar.png')
+clicar_imagem('gerar.png')
+time.sleep(10)
+
+# Verifica se a mensagem de erro apareceu na tela
+imagem_erro = caminho_imagem('erro.png')
+try:
+    erro_localizado = list(pyautogui.locateAllOnScreen(imagem_erro))
+except ImageNotFoundException:
+    erro_localizado = []
+
+if erro_localizado:
+    pyautogui.hotkey('alt', 'f4')
+    print('Erro relatório tunel de congelado')
+    time.sleep(1)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(0.5)
+else:
+    clicar_imagem('ferramentas.png')
+    clicar_imagem('relatoriotexto.png')
+    clicar_imagem('tunel_congeladotexto.png')
+    time.sleep(10)
+
+    # Selecionar e copiar o texto gerado
+    pyautogui.hotkey('ctrl', 'a')
+    pyautogui.hotkey('ctrl', 'c')
+
+    # Voltar para a janela do Excel
+    janela_excel = gw.getWindowsWithTitle("sitrad controladores.xlsx")[0]
+    janela_excel.activate()
+
+    # Navegar para a aba "PASTEURIZADOR 1"
+    pyautogui.hotkey('ctrl', 'g')  # Atalho para 'Ir Para'
+    time.sleep(1)
+    pyautogui.write('tunelcongelado')
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.hotkey('Ctrl', 'down')
+    time.sleep(0.5)
+    pyautogui.press('down')
+
+    # Colar os dados copiados e excluir o índice
+    pyautogui.hotkey('ctrl', 'v')
+    time.sleep(2)
+    pyautogui.press('up')
+    time.sleep(0.5)
+    pyautogui.press('down')
+    time.sleep(0.5)
+    pyautogui.hotkey('Shift', 'space')
+    time.sleep(0.5)
+    pyautogui.hotkey('Ctrl', '-')
+    time.sleep(2)
+
+    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+    pyautogui.hotkey('alt', 'tab')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+
+# ------------------------------------------------------------------------------
+
+# Puxar relatório do Tunel de resfriamento
+clicar_imagem('tunel_resfriamento.png', duplo_clique=True)
+time.sleep(2)
+clicar_imagem('temperatura_ambiente.png')
+clicar_imagem('temperatura_evaporador.png')
+clicar_imagem('dispositivos.png')
+clicar_imagem('adicionar.png')
+clicar_imagem('gerar.png')
+time.sleep(10)
+
+# Verifica se a mensagem de erro apareceu na tela
+imagem_erro = caminho_imagem('erro.png')
+try:
+    erro_localizado = list(pyautogui.locateAllOnScreen(imagem_erro))
+except ImageNotFoundException:
+    erro_localizado = []
+
+if erro_localizado:
+    pyautogui.hotkey('alt', 'f4')
+    print('Erro relatório tunel de resfriamento')
+    time.sleep(1)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(0.5)
+else:
+    clicar_imagem('ferramentas.png')
+    clicar_imagem('relatoriotexto.png')
+    clicar_imagem('tunel_resfriamentotexto.png')
+    time.sleep(10)
+
+    # Selecionar e copiar o texto gerado
+    pyautogui.hotkey('ctrl', 'a')
+    pyautogui.hotkey('ctrl', 'c')
+
+    # Voltar para a janela do Excel
+    janela_excel = gw.getWindowsWithTitle("sitrad controladores.xlsx")[0]
+    janela_excel.activate()
+
+    # Navegar para a aba "PASTEURIZADOR 1"
+    pyautogui.hotkey('ctrl', 'g')  # Atalho para 'Ir Para'
+    time.sleep(1)
+    pyautogui.write('tunelresfriado')
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.hotkey('Ctrl', 'down')
+    time.sleep(0.5)
+    pyautogui.press('down')
+
+    # Colar os dados copiados e excluir o índice
+    pyautogui.hotkey('ctrl', 'v')
+    time.sleep(2)
+    pyautogui.press('up')
+    time.sleep(0.5)
+    pyautogui.press('down')
+    time.sleep(0.5)
+    pyautogui.hotkey('Shift', 'space')
+    time.sleep(0.5)
+    pyautogui.hotkey('Ctrl', '-')
+    time.sleep(2)
+
+    # salva a planilha após o ultima relatorio
+    pyautogui.hotkey('ctrl', 'b')
+    time.sleep(6)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+
+    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
