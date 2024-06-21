@@ -451,6 +451,15 @@ else:
         pyautogui.press('right')
     pyautogui.keyDown('shift')
     pyautogui.press('right')
+    for _ in range(4):
+        pyautogui.press('down')
+    pyautogui.keyUp('shift')
+    pyautogui.hotkey('ctrl', 'c')
+    pyautogui.hotkey('ctrl', 'v')
+    pyautogui.press('ctrl')
+    pyautogui.press('e')
+    pyautogui.hotkey('ctrl', 'b')
+    pyautogui.hotkey('alt', 'f4')
 
     # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
     for _ in(3):
