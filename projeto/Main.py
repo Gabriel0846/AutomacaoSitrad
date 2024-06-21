@@ -434,8 +434,6 @@ else:
     # salva a planilha após o ultima relatorio ser lançado
     pyautogui.hotkey('ctrl', 'b')
     time.sleep(6)
-    #pyautogui.hotkey('alt', 'f4')
-    #time.sleep(2)
 
     # Caminho para o arquivo da planilha de temperatura
     caminho_planilha = r'\\Srv-araovos\d\Meus documentos\INFO\INFO\Controles\Sitrad Tmp.xlsx'
@@ -461,7 +459,11 @@ else:
     pyautogui.hotkey('ctrl', 'b')
     pyautogui.hotkey('alt', 'f4')
 
-    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
-    for _ in(3):
+    # fecha a planilha de relatorios
     pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+
+    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+    for _ in range(3):
+        pyautogui.hotkey('alt', 'f4')
     time.sleep(2)
