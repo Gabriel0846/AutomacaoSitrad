@@ -21,6 +21,11 @@ def data_final():
     ontem = datetime.now() - timedelta(days=1)
     return ontem.strftime('%d%m%Y')
 
+#retorna data com /
+def data():
+    ontem = datetime.now() - timedelta(days=1)
+    return ontem.strftime('%d/%m/%Y')
+
 # Função que insere as datas
 def inserir_data():
     pyautogui.write(data_inicial())
@@ -431,39 +436,68 @@ else:
     pyautogui.hotkey('Ctrl', '-')
     time.sleep(2)
 
-    # salva a planilha após o ultima relatorio ser lançado
-    pyautogui.hotkey('ctrl', 'b')
-    time.sleep(6)
+# --------------------------------------------------------------------------------------
 
-    # Caminho para o arquivo da planilha de temperatura
-    caminho_planilha = r'\\Srv-araovos\d\Meus documentos\INFO\INFO\Controles\Sitrad Tmp.xlsx'
-    time.sleep(10)
-    pyautogui.hotkey('ctrl', 'l')
-    time.sleep(2)
-    pyautogui.write(data_final())
-    time.sleep(1)
-    pyautogui.press('enter')
-    time.sleep(1)
-    pyautogui.hotkey('alt', 'f4')
-    for _ in range(5):
-        pyautogui.press('right')
-    pyautogui.keyDown('shift')
+# salva a planilha após o ultima relatorio ser lançado
+pyautogui.hotkey('ctrl', 'b')
+time.sleep(6)
+
+# --------------------------------------------------------------------------------------
+
+
+caminho_planilha = r'\\Srv-araovos\d\Meus documentos\INFO\INFO\Controles\Sitrad Tmp.xlsx'
+subprocess.Popen([r'C:\Program Files\Microsoft Office\Office16\EXCEL.EXE', caminho_planilha])
+time.sleep(5)
+
+pyautogui.hotkey('ctrl', 'g')
+time.sleep(1)
+pyautogui.write('A')
+pyautogui.press('enter')
+time.sleep(1)
+pyautogui.hotkey('ctrl', 'l')
+time.sleep(2)
+pyautogui.write(data())
+time.sleep(1)
+pyautogui.press('enter')
+time.sleep(1)
+pyautogui.hotkey('alt', 'f4')
+time.sleep(1)
+for _ in range(5):
     pyautogui.press('right')
-    for _ in range(4):
-        pyautogui.press('down')
-    pyautogui.keyUp('shift')
-    pyautogui.hotkey('ctrl', 'c')
-    pyautogui.hotkey('ctrl', 'v')
-    pyautogui.press('ctrl')
-    pyautogui.press('e')
-    pyautogui.hotkey('ctrl', 'b')
-    pyautogui.hotkey('alt', 'f4')
+    time.sleep(0.1)
 
-    # fecha a planilha de relatorios
-    pyautogui.hotkey('alt', 'f4')
-    time.sleep(2)
+# Caminho para o executável do AutoHotKey
+ahk_executable = r'C:\Program Files\AutoHotkey\AutoHotkey.exe'
+# Caminho para o script AutoHotKey
+ahk_script = r'C:\Users\Terminal17\Documents\GitHub\AutomacaoSitrad\shift_select.ahk'
 
-    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
-    for _ in range(3):
-        pyautogui.hotkey('alt', 'f4')
-    time.sleep(2)
+# Executa o script AutoHotKey para pressionar Shift + setas
+subprocess.Popen([ahk_executable, ahk_script])
+time.sleep(2)
+
+# Copiar e colar a seleção
+pyautogui.hotkey('ctrl', 'c')
+time.sleep(1)
+pyautogui.hotkey('ctrl', 'v')
+time.sleep(1)
+
+# Colar com somente valores e salvar a planilha
+pyautogui.press('ctrl')
+time.sleep(0.5)
+pyautogui.press('e')
+pyautogui.hotkey('ctrl', 'b')
+time.sleep(1)
+
+# Fechar o Excel
+pyautogui.hotkey('alt', 'f4')
+time.sleep(1)
+pyautogui.press('enter')
+
+# fecha a planilha de relatorios
+pyautogui.hotkey('alt', 'f4')
+time.sleep(2)
+
+# Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+for _ in range(3):
+    pyautogui.hotkey('alt', 'f4')
+time.sleep(2)
