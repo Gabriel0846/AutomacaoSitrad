@@ -486,7 +486,7 @@ pyautogui.press('ctrl')
 time.sleep(0.5)
 pyautogui.press('e')
 pyautogui.hotkey('ctrl', 'b')
-time.sleep(1)
+time.sleep(6)
 
 # Fechar o Excel
 pyautogui.hotkey('alt', 'f4')
