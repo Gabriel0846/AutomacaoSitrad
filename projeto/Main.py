@@ -500,5 +500,5 @@ time.sleep(2)
 # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
 for _ in range(3):
     pyautogui.hotkey('alt', 'f4')
-    time.sleep(4)
+    time.sleep(8)
 time.sleep(2)
