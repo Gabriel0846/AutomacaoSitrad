@@ -202,7 +202,7 @@ else:
 #    time.sleep(2)
 #    pyautogui.hotkey('alt', 'f4')
 #    time.sleep(2)
-#    pyautogui.hotkey('alt', 'f4')
+    pyautogui.hotkey('alt', 'f4')
     time.sleep(2)
 
 # --------------------------------------------------------------------------------
