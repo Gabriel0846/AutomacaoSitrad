@@ -162,7 +162,48 @@ if erro_localizado:
     pyautogui.hotkey('alt', 'f4')
     time.sleep(0.5)
 else:
-    print('Camara fria voltou, por favor ajuste o código')
+    clicar_imagem('ferramentas.png')
+    clicar_imagem('relatoriotexto.png')
+    clicar_imagem('camara_friatexto.png')
+    time.sleep(10)
+
+    # Selecionar e copiar o texto gerado
+    pyautogui.hotkey('ctrl', 'a')
+    pyautogui.hotkey('ctrl', 'c')
+
+    # Voltar para a janela do Excel
+    janela_excel = gw.getWindowsWithTitle("sitrad controladores.xlsx")[0]
+    janela_excel.activate()
+
+    # Navegar para a aba "PASTEURIZADOR 1"
+    pyautogui.hotkey('ctrl', 'g')  # Atalho para 'Ir Para'
+    time.sleep(1)
+    pyautogui.write('camarafria')
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.hotkey('Ctrl', 'down')
+    time.sleep(0.5)
+    pyautogui.press('down')
+
+    # Colar os dados copiados e excluir o índice
+    pyautogui.hotkey('ctrl', 'v')
+    time.sleep(2)
+    pyautogui.press('up')
+    time.sleep(0.5)
+    pyautogui.press('down')
+    time.sleep(0.5)
+    pyautogui.hotkey('Shift', 'space')
+    time.sleep(0.5)
+    pyautogui.hotkey('Ctrl', '-')
+    time.sleep(2)
+
+    # Voltar para a janela do Sitrad e fechar as abas para o próximo relatório
+    pyautogui.hotkey('alt', 'tab')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
 
 # --------------------------------------------------------------------------------
 
