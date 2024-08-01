@@ -208,6 +208,12 @@ else:
 # --------------------------------------------------------------------------------
 
 # Puxar relatório do Pasteurizador
+pyautogui.press('tab')
+time.sleep(1)
+pyautogui.press('tab')
+time.sleep(1)
+pyautogui.press('end')
+time.sleep(1)
 clicar_imagem('pasteurizador_1.png', duplo_clique=True)
 time.sleep(2)
 clicar_imagem('temperatura_ambiente.png')
